@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Back"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#1A1A1A"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login to your account"
+        android:textSize="16sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="40dp"/>
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Email or Username"
+        android:paddingLeft="20dp"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:background="@drawable/edittext_bg"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="LOGIN"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#007BFF"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:elevation="4dp"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or login with"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="#9E9E9E"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btnFacebook"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/img"
+            android:background="@drawable/social_button_bg"
+            android:scaleType="centerInside"
+            android:padding="15dp"
+            android:layout_marginRight="20dp"
+            android:contentDescription="Facebook" />
+
+        <ImageButton
+            android:id="@+id/btnGoogle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/img_1"
+            android:background="@drawable/social_button_bg"
+            android:scaleType="centerInside"
+            android:padding="15dp"
+            android:contentDescription="Google" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtGoToRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Register"
+        android:layout_marginTop="40dp"
+        android:textColor="#007BFF"
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
+</LinearLayout>
