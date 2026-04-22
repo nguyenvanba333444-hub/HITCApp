@@ -5,14 +5,16 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import java.util.List;
 
-public class ProductAdapter extends BaseAdapter {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private Context context;
     private List<Product> productList;
 
@@ -21,48 +23,54 @@ public class ProductAdapter extends BaseAdapter {
         this.productList = productList;
     }
 
+    @NonNull
     @Override
-    public int getCount() { return productList.size(); }
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false);
+        return new ProductViewHolder(view);
+    }
 
     @Override
-    public Object getItem(int position) { return productList.get(position); }
-
-    @Override
-    public long getItemId(int position) { return position; }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false);
-        }
-
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
+        
+        if (product.getImageUrl() != null && !product.getImageUrl().isEmpty()) {
+            Glide.with(context).load(product.getImageUrl()).into(holder.img);
+        } else {
+            holder.img.setImageResource(product.getImageResId());
+        }
+        
+        holder.name.setText(product.getName());
+        holder.price.setText(product.getPrice());
 
-        ImageView img = convertView.findViewById(R.id.img_product);
-        TextView name = convertView.findViewById(R.id.tv_name);
-        TextView price = convertView.findViewById(R.id.tv_price);
-        ImageButton btnAddFast = convertView.findViewById(R.id.btn_add_fast);
-
-        img.setImageResource(product.getImageResId());
-        name.setText(product.getName());
-        price.setText(product.getPrice());
-
-        // Xử lý nút "Mua nhanh" ngay trong Adapter
-        btnAddFast.setOnClickListener(v -> {
+        holder.btnAddFast.setOnClickListener(v -> {
+            CartManager.addProduct(product);
             Toast.makeText(context, "Đã thêm " + product.getName() + " vào giỏ!", Toast.LENGTH_SHORT).show();
-            // Có thể chuyển thẳng sang Cart nếu muốn
-            // Intent intent = new Intent(context, CartActivity.class);
-            // context.startActivity(intent);
         });
 
-        // Bấm vào cả dòng sẽ vào Detail
-        convertView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            // Gửi dữ liệu sang (tùy chọn)
-            intent.putExtra("product_name", product.getName());
+            intent.putExtra("product_obj", product); // Gửi cả đối tượng đi cho tiện
             context.startActivity(intent);
         });
+    }
 
-        return convertView;
+    @Override
+    public int getItemCount() {
+        return productList.size();
+    }
+
+    public static class ProductViewHolder extends RecyclerView.ViewHolder {
+        ImageView img;
+        TextView name, price;
+        ImageButton btnAddFast;
+
+        public ProductViewHolder(@NonNull View itemView) {
+            super(itemView);
+            img = itemView.findViewById(R.id.img_product);
+            name = itemView.findViewById(R.id.tv_name);
+            price = itemView.findViewById(R.id.tv_price);
+            btnAddFast = itemView.findViewById(R.id.btn_add_fast);
+        }
     }
 }

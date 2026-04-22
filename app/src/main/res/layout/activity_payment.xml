@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Payment Method"
+            android:text="Phương thức thanh toán"
             android:textColor="#1A1A1A"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose your payment method"
+                android:text="Chọn phương thức thanh toán của bạn"
                 android:textColor="#757575"
                 android:textSize="16sp" />
 
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_weight="1"
-                        android:text="Credit or Debit Card"
+                        android:text="Thẻ tín dụng hoặc Thẻ ghi nợ"
                         android:textColor="#1A1A1A"
                         android:textSize="18sp" />
 
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Order Summary"
+                android:text="Tóm tắt đơn hàng"
                 android:textColor="#1A1A1A"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -142,13 +142,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subtotal"
+                    android:text="Tạm tính"
                     android:textColor="#757575" />
 
                 <TextView
+                    android:id="@+id/tvSubtotalPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$199.98"
+                    android:text="0 VNĐ"
                     android:textColor="#1A1A1A" />
             </LinearLayout>
 
@@ -162,13 +163,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Shipping"
+                    android:text="Phí vận chuyển"
                     android:textColor="#757575" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Free"
+                    android:text="Miễn phí"
                     android:textColor="#28a745" />
             </LinearLayout>
 
@@ -188,15 +189,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Total Amount"
+                    android:text="Tổng cộng"
                     android:textColor="#1A1A1A"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvTotalPayment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$199.98"
+                    android:text="0 VNĐ"
                     android:textColor="#007BFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -211,7 +213,7 @@
         android:layout_height="56dp"
         android:layout_margin="20dp"
         android:backgroundTint="#007BFF"
-        android:text="Pay Now"
+        android:text="Thanh toán ngay"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textStyle="bold"

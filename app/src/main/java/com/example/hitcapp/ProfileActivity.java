@@ -1,8 +1,10 @@
 package com.example.hitcapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -17,7 +19,13 @@ public class ProfileActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
         
         btnLogout.setOnClickListener(v -> {
-            // Xử lý đăng xuất ở đây
+            // Hiển thị thông báo
+            Toast.makeText(this, "Đã đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+            
+            // Chuyển về màn hình Login và xóa hết các Activity khác trong stack
+            Intent intent = new Intent(ProfileActivity.this, login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
     }

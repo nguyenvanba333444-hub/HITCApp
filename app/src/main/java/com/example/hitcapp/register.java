@@ -1,6 +1,5 @@
 package com.example.hitcapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,17 +13,21 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText user = findViewById(R.id.reg_username);
-        EditText email = findViewById(R.id.reg_email);
-        EditText pass = findViewById(R.id.reg_password);
+        EditText userEt = findViewById(R.id.reg_username);
+        EditText passEt = findViewById(R.id.reg_password);
         Button btnReg = findViewById(R.id.registerBtn);
         TextView backLogin = findViewById(R.id.txtBackToLogin);
 
         btnReg.setOnClickListener(v -> {
-            if(user.getText().toString().isEmpty() || pass.getText().toString().isEmpty()){
-                Toast.makeText(this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_SHORT).show();
+            String username = userEt.getText().toString().trim();
+            String password = passEt.getText().toString().trim();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+                // Lưu tài khoản mới vào bộ nhớ máy (SharedPreferences)
+                UserManager.registerUser(this, username, password);
+                Toast.makeText(this, "Đăng ký thành công! Hãy đăng nhập lại.", Toast.LENGTH_SHORT).show();
                 finish(); // Quay lại trang Login
             }
         });
