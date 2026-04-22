@@ -2,61 +2,50 @@ package com.example.hitcapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.GridView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Xử lý tràn viền (Insets)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        // 1. Ánh xạ GridView
+        GridView gv = findViewById(R.id.gv_sanpham);
+
+        // 2. Cập nhật dữ liệu với các hình ảnh mới bạn vừa thêm
+        List<Product> productList = new ArrayList<>();
+        
+        // img_2 là Samsung S24 Ultra bạn vừa gửi
+        productList.add(new Product("Samsung S24 Ultra", "22.500k", R.drawable.img_2));
+        
+        // Phân bổ các ảnh còn lại cho các sản phẩm khác
+        productList.add(new Product("iPhone 15 Pro", "29.990k", R.drawable.img_3));
+        productList.add(new Product("MacBook Air M3", "32.000k", R.drawable.img_4));
+        productList.add(new Product("Sony WH-1000XM5", "7.500k", R.drawable.img_5));
+        productList.add(new Product("Apple Watch S9", "10.200k", R.drawable.img_6));
+        productList.add(new Product("iPad Pro M2", "21.900k", R.drawable.img_7));
+        productList.add(new Product("AirPods Pro 2", "5.400k", R.drawable.img_3));
+        productList.add(new Product("Logitech MX Master", "2.100k", R.drawable.img_4));
+
+        // 3. Thiết lập Adapter
+        ProductAdapter adapter = new ProductAdapter(this, productList);
+        gv.setAdapter(adapter);
+
+        // 4. Click vào sản phẩm để xem chi tiết
+        gv.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+            startActivity(intent);
         });
-
-        // 1. Ánh xạ ListView từ XML
-        ListView lv = findViewById(R.id.lv_sanpham);
-
-        // 2. Tạo dữ liệu mẫu
-        String[] data = {
-                "Gói thanh toán Cơ bản",
-                "Gói thanh toán Nâng cao",
-                "Gói thanh toán Premium",
-                "Gói thanh toán Đặc biệt"
-        };
-
-        // 3. Tạo Adapter để đổ dữ liệu vào ListView
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                data
-        );
-
-        // 4. Gán Adapter cho ListView
-        lv.setAdapter(adapter);
-
-        // 5. Xử lý sự kiện khi nhấn vào từng dòng để sang trang Detail
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Chuyển sang trang DetailActivity (file detail.java hoặc DetailActivity.java của bạn)
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                startActivity(intent);
-            }
+        
+        // 5. Nút Giỏ hàng
+        findViewById(R.id.btnGoToCart).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CartActivity.class);
+            startActivity(intent);
         });
     }
 }
