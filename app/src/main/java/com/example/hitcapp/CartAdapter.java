@@ -38,7 +38,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Product product = cartList.get(position);
         
-        // Sử dụng Glide để hiển thị ảnh từ URL API hoặc ảnh Local
         if (product.getImageUrl() != null && !product.getImageUrl().isEmpty()) {
             Glide.with(context).load(product.getImageUrl()).into(holder.img);
         } else {
@@ -47,6 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         holder.name.setText(product.getName());
         holder.price.setText(product.getPrice());
+        holder.quantity.setText("Số lượng: " + product.getQuantity());
 
         holder.btnDelete.setOnClickListener(v -> {
             CartManager.removeProduct(position);
@@ -62,7 +62,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView name, price;
+        TextView name, price, quantity;
         ImageButton btnDelete;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -70,6 +70,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             img = itemView.findViewById(R.id.imgCartItem);
             name = itemView.findViewById(R.id.tvCartItemName);
             price = itemView.findViewById(R.id.tvCartItemPrice);
+            quantity = itemView.findViewById(R.id.tvCartItemQuantity);
             btnDelete = itemView.findViewById(R.id.btnDeleteCartItem);
         }
     }

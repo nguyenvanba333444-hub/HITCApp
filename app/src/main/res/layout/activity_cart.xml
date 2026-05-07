@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Shopping Cart"
+            android:text="Giỏ hàng của bạn"
             android:textColor="#1A1A1A"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -111,7 +111,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="#007BFF"
-                android:text="Proceed to Payment"
+                android:text="Tiến hành thanh toán"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:textStyle="bold"

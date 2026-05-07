@@ -45,6 +45,15 @@
                 android:text="0 VNĐ"
                 android:textColor="#FF5722"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCartItemQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Số lượng: 1"
+                android:textColor="#757575"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <ImageButton

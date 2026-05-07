@@ -81,7 +81,7 @@
                         android:background="#E8F5E9"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="4dp"
-                        android:text="In Stock"
+                        android:text="Còn hàng"
                         android:textColor="#2E7D32"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Description"
+                    android:text="Mô tả sản phẩm"
                     android:textColor="#1A1A1A"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -123,7 +123,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Select Quantity"
+                        android:text="Chọn số lượng"
                         android:textColor="#1A1A1A"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -185,7 +185,7 @@
             android:layout_height="56dp"
             android:layout_marginEnd="12dp"
             android:layout_weight="1"
-            android:text="Add to Cart"
+            android:text="Thêm vào giỏ"
             android:textAllCaps="false"
             android:textColor="#007BFF"
             app:cornerRadius="28dp"
@@ -197,7 +197,7 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:backgroundTint="#007BFF"
-            android:text="Buy Now"
+            android:text="Mua ngay"
             android:textAllCaps="false"
             app:cornerRadius="28dp" />
     </LinearLayout>

@@ -64,16 +64,14 @@ public class DetailActivity extends AppCompatActivity {
 
         btnAdd.setOnClickListener(v -> {
             if (product != null) {
-                for (int i = 0; i < quantity; i++) {
-                    CartManager.addProduct(product);
-                }
+                CartManager.addProduct(product, quantity);
                 Toast.makeText(this, "Đã thêm " + quantity + " sản phẩm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnBuy.setOnClickListener(v -> {
             if (product != null) {
-                CartManager.addProduct(product);
+                CartManager.addProduct(product, quantity);
                 startActivity(new Intent(DetailActivity.this, CartActivity.class));
             }
         });

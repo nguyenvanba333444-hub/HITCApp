@@ -15,7 +15,11 @@ public class Product implements Serializable {
     
     @SerializedName("image")
     private String imageUrl;
-    
+
+    @SerializedName("description")
+    private String description;
+
+    private int quantity = 1;
     private int imageResId; // Dùng cho dữ liệu local dự phòng
 
     // Constructor cho dữ liệu mẫu (Local)
@@ -27,20 +31,36 @@ public class Product implements Serializable {
             this.priceValue = 0;
         }
         this.imageResId = imageResId;
+        this.quantity = 1;
     }
 
-    public String getName() { return name; }
+    public int getId() { return id; }
+
+    public String getName() { 
+        return name != null ? name : "Sản phẩm không tên"; 
+    }
     
-    public String getPrice() { 
-        if (priceValue > 1000) {
-             return java.text.NumberFormat.getInstance().format(priceValue).replace(",", ".") + " VNĐ";
+    public double getPriceInVnd() {
+        if (priceValue > 0 && priceValue < 10000) {
+            // Chuyển đổi từ USD sang VNĐ (tỷ giá giả định 25.000)
+            return priceValue * 25000;
         }
-        return String.format("%.2f $", priceValue); 
+        return priceValue;
+    }
+
+    public String getPrice() { 
+        return java.text.NumberFormat.getInstance().format(getPriceInVnd()).replace(",", ".") + " VNĐ";
     }
     
     public int getImageResId() { return imageResId; }
     
     public String getImageUrl() { return imageUrl; }
+
+    public String getDescription() { return description; }
+
+    public int getQuantity() { return quantity; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setImageResId(int imageResId) { this.imageResId = imageResId; }
